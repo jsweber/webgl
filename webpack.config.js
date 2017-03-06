@@ -10,10 +10,10 @@ module.exports = {
     entry:entry,
     output:{
         filename:"[name].js",
-        path:path.resolve(__dirname,"dist","[name]","assets"),
+        path:path.resolve(__dirname,"dist","assets"),
         publicPath:"/assets/"
     },
-    devtool:"cheap-module-eval-source-map",
+    devtool:"inline-source-map",
     module:{
         rules:[{
             test:/\.css$/,
@@ -31,13 +31,14 @@ module.exports = {
         }),
         new ExtractTextPlugin('[name].css'),
         new HtmlWebpackPlugin({
-            filename:"../index.html",
-            template:"./",
+            title:"[name]",
+            filename:"../[name].html",
+        
             inject:true
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name:"commons",
-            filename:"commons.js",
+            name:"[name]",
+            filename:"[name].js",
             minChunks:2
         }),
         new webpack.HotModuleReplacementPlugin()

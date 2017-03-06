@@ -1,5 +1,5 @@
 var entry = {
-    app:"./demo/demo0/main.js"
+    demo0:"./app/demo0/main.js"
 
 }
 
