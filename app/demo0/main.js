@@ -1,4 +1,5 @@
 import style from "./style.css";
+import {vertexData,fragmentData} from "./data";
 
 var wl = document.querySelector("#webgl");
     var ctx = wl.getContext("webgl");
@@ -6,9 +7,9 @@ var wl = document.querySelector("#webgl");
     //顶点着色器描述一个顶点的大小，位置；片元着色器 描述一个点的颜色
 
     //顶点着色器
-    var vertexShaderSource = document.querySelector("#vertx").innerHTML;
+    var vertexShaderSource = vertexData;
     //片元着色器
-    var fragmentShaderSource = document.querySelector("#fragment").innerHTML;
+    var fragmentShaderSource = fragmentData;
 
     //创建顶点着色器
     var vertexShader = ctx.createShader(ctx.VERTEX_SHADER);
