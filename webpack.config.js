@@ -10,7 +10,7 @@ var config = require("./output.config");
 module.exports = {
     entry:entry,
     output:{
-        filename:"[name].js",
+        filename:"[name].js",  //这里可以改成assets/[name].js从而达到html和js分开的目的，当然HtmlWebpackPlugin里的filename ../要去掉
         path:path.resolve(__dirname,"dist",config.name,"assets"),
         publicPath:"/"+config.name+"/assets/"
     },
