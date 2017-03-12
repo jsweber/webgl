@@ -46,7 +46,7 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name:"common",
             filename:"assets/common.js",
-            minChunks:Infinity
+            minChunks:Infinity  //加了這個后，common.js就能自動引入頁面了
         }),
         new webpack.HotModuleReplacementPlugin(),
         // new webapck.ProvidePlugin({
