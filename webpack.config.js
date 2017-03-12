@@ -16,13 +16,30 @@ module.exports = {
     },
     devtool:"inline-source-map",
     module:{
-        rules:[{
-            test:/\.css$/,
-            use:ExtractTextPlugin.extract({
-                use:"css-loader",
-                fallback:"style-loader"
-            })
-        }]
+        rules:[
+            {
+                test:/\.css$/,
+                use:ExtractTextPlugin.extract({
+                    use:"css-loader",
+                    fallback:"style-loader"
+                })
+            },
+            {
+                test:/\.scss$/,
+                loader: ExtractTextPlugin.extract({
+                    fallbackLoader: "style-loader",
+                    loader: "css-loader!sass-loader",
+                }),
+            },
+            {
+                test:/\.js$/,
+                exclude:/(node_modules|bower_components)/,
+                loader:'babel-loader',
+                query:{
+                    presets:['es2015']
+                }
+            }
+        ]
     },
     plugins:[
         // new webpack.optimize.UglifyJsPlugin({   //開發過程不建議使用
@@ -31,6 +48,7 @@ module.exports = {
         //     }
         // }),
         new ExtractTextPlugin('assets/[name].css'),
+        //todo ：这样多一个按理就要手动添加太low了，要用nodejs io每次执行，动态读取，
         new HtmlWebpackPlugin({
             filename:"demo0.html",
             template:"./app/demo0/demo0.html",
