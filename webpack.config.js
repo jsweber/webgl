@@ -3,6 +3,7 @@ var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var entry = require("./webpack.entry");
+var plugins = require("./webpack.plugins");
 
 var testData = require("./mockdata/testData");
 var config = require("./output.config");
@@ -15,6 +16,12 @@ module.exports = {
         publicPath:"/"
     },
     devtool:"inline-source-map",
+    resolve:{
+        alias:{
+            //todo  jquery  全局依赖
+            jquery$:"./lib/jquery.min.js"
+        }
+    },
     module:{
         rules:[
             {
@@ -41,36 +48,7 @@ module.exports = {
             }
         ]
     },
-    plugins:[
-        // new webpack.optimize.UglifyJsPlugin({   //開發過程不建議使用
-        //     compress:{
-        //         warnings:false
-        //     }
-        // }),
-        new ExtractTextPlugin('assets/[name].css'),
-        //todo ：这样多一个按理就要手动添加太low了，要用nodejs io每次执行，动态读取，
-        new HtmlWebpackPlugin({
-            filename:"demo0.html",
-            template:"./app/demo0/demo0.html",
-            chunks:["demo0"],
-            inject:true
-        }),
-        new HtmlWebpackPlugin({
-            filename:"demo1.html",
-            template:"./app/demo1/demo1.html",
-            chunks:["demo1"],
-            inject:true
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name:"common",
-            filename:"assets/common.js",
-            minChunks:Infinity  //加了這個后，common.js就能自動引入頁面了
-        }),
-        new webpack.HotModuleReplacementPlugin(),
-        // new webapck.ProvidePlugin({
-        //     $:'jquery'
-        // })
-    ],
+    plugins:plugins,
     devServer:{
         contentBase:path.join(__dirname,"dist"),
         publicPath:"/",

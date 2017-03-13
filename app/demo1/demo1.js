@@ -7,3 +7,5 @@ can.addEventListener("click",(e)=>{
     console.log(e);
 },false);
 
+// document.querySelectorAll("p")[0].innerHTML="hahah";
+
