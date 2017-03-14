@@ -28,6 +28,7 @@ plugins.push(
 
 plugins.push(new ExtractTextPlugin('assets/[name].css'));
 plugins.push(new webpack.HotModuleReplacementPlugin());
+//添加全局匹配，value（jquery）值是在alias里定义的
 plugins.push(new webpack.ProvidePlugin({
   $:'jquery'
 }));

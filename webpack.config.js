@@ -18,8 +18,8 @@ module.exports = {
     devtool:"inline-source-map",
     resolve:{
         alias:{
-            //todo  jquery  全局依赖
-            jquery$:"./lib/jquery.min.js"
+            //起初只是相对路径才没成功
+            jquery$:path.resolve(__dirname,"./lib/jquery.min.js")
         }
     },
     module:{
